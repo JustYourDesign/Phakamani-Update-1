@@ -1,0 +1,288 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   PHAKAMANI DESIGN SYSTEM
+   Ported from the client's own reference build: a flat, square-cornered
+   editorial system — forest/black/paper, condensed 800-weight display type over
+   Manrope body copy, hairline rules instead of cards, and no shadows or
+   radii anywhere. Sections are full-bleed with a 7% side gutter.
+   ========================================================================== */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+
+  /* Core palette */
+  --color-ink: var(--ink);
+  --color-forest: var(--forest);
+  --color-paper: var(--paper);
+  --color-muted-ink: var(--muted-ink);
+  --color-line: var(--line);
+  --color-wash: var(--wash);
+  --color-wash-deep: var(--wash-deep);
+  --color-rule-deep: var(--rule-deep);
+  --color-on-ink: var(--on-ink);
+  --color-on-ink-dim: var(--on-ink-dim);
+
+  /* shadcn bridge */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Square corners are the system. Nothing is rounded. */
+  --radius-pill: 0px;
+  --radius-card: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+
+  /* Type scale — condensed display, 1.04 line-height, set very large */
+  --text-display: clamp(6rem, 11vw, 11rem);
+  --text-display--line-height: 0.84;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-hero: clamp(3.8rem, 7vw, 7rem);
+  --text-hero--line-height: 1.04;
+  --text-hero--letter-spacing: -0.01em;
+
+  --text-title: clamp(2.6rem, 5vw, 4.7rem);
+  --text-title--line-height: 1.04;
+  --text-title--letter-spacing: -0.005em;
+
+  --text-closing: clamp(3rem, 6vw, 6rem);
+  --text-closing--line-height: 1.04;
+
+  /* Barlow Condensed row headings on the approach list */
+  --text-row: 3rem;
+  --text-row--line-height: 1.04;
+
+  --text-heading: 2rem;
+  --text-heading--line-height: 1.2;
+
+  --text-subheading: 1.65rem;
+  --text-subheading--line-height: 1.2;
+
+  --text-lead: 1.15rem;
+  --text-lead--line-height: 1.7;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+
+  --text-small: 0.9rem;
+  --text-small--line-height: 1.6;
+
+  --text-label: 0.8rem;
+  --text-label--line-height: 1.5;
+  --text-label--letter-spacing: 0.125em;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Secondary: type, rules and the alternate dark ground. */
+  --ink: #000000;
+  /* Primary: the brand green sampled from the logo mark. Carries the hero,
+     every page opener and the closing band. */
+  --forest: #085048;
+  --paper: #f4f7f5;
+  --muted-ink: #55635d;
+  --line: #ccd8d3;
+
+  /* Two warm washes lifted from the reference: card fill and hover fill. */
+  --wash: #e3ece8;
+  --wash-deep: #d8e5df;
+  --rule-deep: #b4c7bf;
+
+  /* Type colours on ink grounds */
+  --on-ink: #cfdcd6;
+  --on-ink-dim: #b0c2ba;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+
+  --card: var(--wash);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--ink);
+  --primary-foreground: #ffffff;
+  --secondary: var(--wash);
+  --secondary-foreground: var(--ink);
+  --muted: var(--wash);
+  --muted-foreground: var(--muted-ink);
+  --accent: var(--forest);
+  --accent-foreground: var(--ink);
+  --destructive: #a3341c;
+
+  --border: var(--line);
+  --input: #939d8b;
+  --ring: #000000;
+
+  --radius: 0px;
+}
+
+/* Dark bands — forest or black — opt in per-section so shadcn primitives
+   invert with them. */
+.on-dark {
+  --background: var(--forest);
+  --foreground: var(--paper);
+  --card: #10201c;
+  --card-foreground: var(--paper);
+  --primary: var(--paper);
+  --primary-foreground: var(--ink);
+  --secondary: #10201c;
+  --secondary-foreground: var(--paper);
+  --muted: #10201c;
+  --muted-foreground: var(--on-ink);
+  --border: rgba(244, 247, 245, 0.18);
+  --input: rgba(244, 247, 245, 0.28);
+  --ring: var(--paper);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    /* Sticky header clearance for anchor targets. */
+    scroll-padding-top: 100px;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Display faces carry their own weight — condensed, heavy, tight. */
+  h1,
+  h2 {
+    @apply font-display;
+    font-weight: 800;
+    line-height: 1.04;
+  }
+  h3 {
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  a:focus-visible,
+  summary:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 5px;
+  }
+  .on-dark a:focus-visible,
+  .on-dark summary:focus-visible,
+  .on-dark button:focus-visible {
+    outline-color: var(--paper);
+  }
+}
+
+/* Uppercase micro-label used for every eyebrow and card link */
+@utility label {
+  font-size: 0.8rem;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+}
+
+/* The small serial numbers above each card heading */
+@utility number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.0625em;
+  color: var(--muted-ink);
+}
+
+/* Section gutter — the reference holds everything to a 7% side inset
+   rather than a fixed content well. */
+@utility section-x {
+  padding-inline: 7%;
+  @media (max-width: 1000px) {
+    padding-inline: 5%;
+  }
+  @media (max-width: 760px) {
+    padding-inline: 6%;
+  }
+}
+
+@utility section-y {
+  padding-block: 90px;
+  @media (max-width: 1000px) {
+    padding-block: 65px;
+  }
+  @media (max-width: 760px) {
+    padding-block: 55px;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Body copy measure — the reference caps intros at 620px */
+@utility measure {
+  max-width: 620px;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee-x 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee {
+    animation: none;
+  }
+}
