@@ -171,8 +171,8 @@ export type PageHeroKey = keyof typeof pageHeroImages;
    frame the hero crops to, and it shows the step the caption names.
    -------------------------------------------------------------------------- */
 export const heroImage = {
-  src: "/photos/schools/shoba-high-school/hoop-activity.webp",
-  alt: "Learners holding hoops in a line while a classmate steps through them",
+  src: "/photos/trail-race-recovery.webp",
+  alt: "A runner catching her breath during a cross-country race",
   captionKicker: "01 / Movement",
   captionLines: ["It begins with", "one more step."],
 } as const;
